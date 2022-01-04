@@ -4,12 +4,12 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "user")
-data class DataUser(
-    @ColumnInfo(name = "name_user")
-    val nama_user: String
+@Entity(tableName = "type")
+data class DataType(
+    @ColumnInfo(name = "nama_type")
+    val nama_type: String
 ) {
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id_user")
-    var id_user: Int? = null
+    @ColumnInfo(name = "id_type")
+    var id_type: Int? = null
 }

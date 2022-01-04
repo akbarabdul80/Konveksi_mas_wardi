@@ -12,6 +12,6 @@ interface UserDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun addUser(data: DataUser)
 
-    @Query("SELECT * FROM user ORDER BY name ASC")
+    @Query("SELECT * FROM user ORDER BY name_user ASC")
     fun getUser(): Flow<List<DataUser>>
 }
