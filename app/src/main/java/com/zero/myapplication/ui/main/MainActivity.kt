@@ -48,7 +48,9 @@ class MainActivity : AppCompatActivity() {
             data.clear()
             var userNow = DataUser("")
             it.sortedBy { it.user.id_user }
+            var totalPengerjaan = 0
             it.forEach { clientUserType ->
+                totalPengerjaan += clientUserType.result.qty
                 if (userNow == clientUserType.user) {
                     data.add(
                         DataResultAdapter(
@@ -90,8 +92,7 @@ class MainActivity : AppCompatActivity() {
 
             adapter.submitData(data)
 
-            Log.e("TAG", "onCreate: ${data.size} ${data}")
-            Log.e("data", it.toString())
+            binding.tvTotal.text = "$totalPengerjaan Baju"
         })
     }
 }

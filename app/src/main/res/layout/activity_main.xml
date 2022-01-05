@@ -86,7 +86,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/semibold"
-                    android:text="@string/title_saldo_kas"
+                    android:text="@string/title_pengerjaan_hari_ini"
                     android:textColor="@color/text_color"
                     android:textSize="15sp"
                     android:textStyle="bold"
@@ -101,7 +101,7 @@
                     app:indicatorName="ballScaleMultiple" />
 
                 <TextView
-                    android:id="@+id/tvKas"
+                    android:id="@+id/tvTotal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
@@ -183,7 +183,7 @@
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:contentDescription="@string/title_null"
-                        android:src="@drawable/ic_type" />
+                        android:src="@drawable/ic_client" />
 
                     <TextView
                         android:layout_width="wrap_content"

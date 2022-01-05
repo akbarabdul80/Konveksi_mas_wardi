@@ -25,4 +25,5 @@
     <string name="title_tipe">Tipe</string>
     <string name="title_user">User</string>
     <string name="title_client">Client</string>
+    <string name="title_pengerjaan_hari_ini">Total Pengerjaan Hari Ini</string>
 </resources>
