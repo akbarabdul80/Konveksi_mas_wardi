@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.zero.myapplication.data.db.RoomDB
 import com.zero.myapplication.data.model.user.DataResult
 import com.zero.myapplication.data.model.user.DataResultClientUserType
+import com.zero.myapplication.data.model.user.DataUser
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -20,11 +21,16 @@ class MainViewModel(
         subscribeResult()
     }
 
+    fun addUser(dataUser: DataUser) {
+        viewModelScope.launch(Dispatchers.IO) {
+            db.user().addUser(dataUser)
+        }
+    }
+
     fun addResult(dataResult: DataResult) {
         viewModelScope.launch(Dispatchers.IO) {
             db.result().addResult(dataResult)
         }
-
     }
 
     fun listenResult(): LiveData<List<DataResultClientUserType>> {
@@ -33,8 +39,6 @@ class MainViewModel(
 
 
     private fun subscribeResult() {
-        result = db.result().getResult().map { data ->
-            data.reversed().map { DataResultClientUserType(it.result, it.client, it.user, it.type) }
-        }
+        result = db.result().getResult()
     }
 }

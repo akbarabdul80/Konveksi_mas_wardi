@@ -11,7 +11,7 @@ interface ResultDao {
     fun addResult(data: DataResult)
 
     @Transaction
-    @Query("SELECT * FROM result")
+    @Query("SELECT * FROM result ORDER BY user_id ASC")
     fun getResult(): LiveData<List<DataResultClientUserType>>
 
 }
