@@ -3,7 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.19010416666666666" />
+        <entry key="app/src/main/res/drawable/ic_baju.xml" value="0.3490740740740741" />
+        <entry key="app/src/main/res/drawable/ic_data_kosong.xml" value="0.21302083333333333" />
+        <entry key="app/src/main/res/drawable/rectangle_in.xml" value="0.11927083333333334" />
+        <entry key="app/src/main/res/drawable/rectangle_out.xml" value="0.11927083333333334" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/list_shimmer.xml" value="0.3536458333333333" />
       </map>
     </option>
   </component>

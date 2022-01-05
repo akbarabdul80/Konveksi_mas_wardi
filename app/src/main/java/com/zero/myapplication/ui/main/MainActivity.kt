@@ -9,8 +9,6 @@ import com.zero.myapplication.R
 import com.zero.myapplication.data.db.RoomDB
 import com.zero.myapplication.data.model.user.DataResult
 import com.zero.myapplication.databinding.ActivityMainBinding
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -24,15 +22,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        GlobalScope.launch {
-            viewModel.addResult(DataResult(1, 1, 1, "01-12-2002", 10))
-        }
+//        viewModel.addResult(DataResult(1, 1, 1, "01-12-2002", 10))
 
-        binding.tvHome.onClick {
-            GlobalScope.launch {
-                viewModel.addResult(DataResult(1, 1, 1, "01-12-2022", 10))
-            }
-        }
+//        binding.tvHome.onClick {
+//            viewModel.addResult(DataResult(1, 1, 1, "01-12-2022", 10))
+//        }
 
 //        GlobalScope.launch {
 ////            App.db.type().addType(DataType("Type 1"))
