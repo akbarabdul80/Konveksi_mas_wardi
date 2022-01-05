@@ -34,6 +34,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -61,6 +65,13 @@ dependencies {
     // UI
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
     implementation "com.google.android.material:material:$rootProject.materialVersion"
+
+    //koin
+    implementation "org.koin:koin-android-viewmodel:2.1.6"
+    implementation "org.koin:koin-android:2.1.6"
+
+    //View Binding
+    implementation 'com.oratakashi:AndroidViewBinding:3.1'
 
     // Testing
     testImplementation "junit:junit:$rootProject.junitVersion"

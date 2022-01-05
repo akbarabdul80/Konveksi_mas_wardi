@@ -1,5 +1,6 @@
 package com.zero.myapplication.data.db.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.zero.myapplication.data.model.user.DataResult
 import com.zero.myapplication.data.model.user.DataResultClientUserType
@@ -11,6 +12,6 @@ interface ResultDao {
 
     @Transaction
     @Query("SELECT * FROM result")
-    fun getResult(): List<DataResultClientUserType>
+    fun getResult(): LiveData<List<DataResultClientUserType>>
 
 }
