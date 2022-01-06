@@ -40,4 +40,6 @@
     <string name="title_tambah_user">Tambah User</string>
     <string name="title_nama_client">Nama Client</string>
     <string name="error_filed">Silahkan isi field ini!</string>
+    <string name="title_tambah_client">Tambah Client</string>
+    <string name="title_nama_user">Nama User</string>
 </resources>

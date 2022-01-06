@@ -14,6 +14,7 @@ import com.zero.myapplication.data.model.user.DataResultAdapter
 import com.zero.myapplication.data.model.user.DataUser
 import com.zero.myapplication.databinding.ActivityMainBinding
 import com.zero.myapplication.ui.client.ClientActivity
+import com.zero.myapplication.ui.user.UserActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -44,6 +45,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             llClient.onClick { startActivity(ClientActivity::class.java) }
+            llUser.onClick { startActivity(UserActivity::class.java) }
         }
 
         viewModel.listenResult().observe(this, {

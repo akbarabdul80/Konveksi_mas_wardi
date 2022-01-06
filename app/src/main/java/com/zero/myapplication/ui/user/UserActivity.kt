@@ -1,4 +1,4 @@
-package com.zero.myapplication.ui.client
+package com.zero.myapplication.ui.user
 
 import android.os.Bundle
 import android.view.View
@@ -6,31 +6,33 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.oratakashi.viewbinding.core.binding.activity.viewBinding
 import com.oratakashi.viewbinding.core.tools.onClick
-import com.zero.myapplication.data.model.user.DataClient
-import com.zero.myapplication.databinding.ActivityClientBinding
+import com.zero.myapplication.data.model.user.DataUser
+import com.zero.myapplication.databinding.ActivityUserBinding
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class ClientActivity : AppCompatActivity(), BottomSheet {
+class UserActivity : AppCompatActivity(), BottomSheet {
 
-    private val binding: ActivityClientBinding by viewBinding()
-    private val viewModel: ClientViewModel by viewModel()
-    private val adapter: ClientAdapter = ClientAdapter()
+    private val binding: ActivityUserBinding by viewBinding()
+    private val viewModel: UserViewModel by viewModel()
+    private val adapter: UserAdapter = UserAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
         with(binding) {
             rvData.also {
                 it.adapter = adapter
-                it.layoutManager = LinearLayoutManager(this@ClientActivity)
+                it.layoutManager = LinearLayoutManager(this@UserActivity)
             }
 
             fab.onClick {
-                ClientBottomFragment.newInstance().show(supportFragmentManager, "Bottom Client")
+                UserBottomFragment.newInstance().show(supportFragmentManager, "Bottom User")
             }
         }
 
         initLinstener()
+
     }
 
     private fun initLinstener() {
@@ -43,7 +45,7 @@ class ClientActivity : AppCompatActivity(), BottomSheet {
         finish()
     }
 
-    override fun onSubmit(data: DataClient) {
-        viewModel.addClient(data)
+    override fun onSubmit(data: DataUser) {
+        viewModel.addUser(data)
     }
 }

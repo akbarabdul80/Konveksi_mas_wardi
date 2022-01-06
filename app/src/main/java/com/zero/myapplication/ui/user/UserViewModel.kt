@@ -1,23 +1,20 @@
-package com.zero.myapplication.ui.main
+package com.zero.myapplication.ui.user
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zero.myapplication.data.db.RoomDB
-import com.zero.myapplication.data.model.user.DataResult
-import com.zero.myapplication.data.model.user.DataResultClientUserType
 import com.zero.myapplication.data.model.user.DataUser
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MainViewModel(
+class UserViewModel(
     private val db: RoomDB
 ) : ViewModel() {
-
-    private lateinit var result: LiveData<List<DataResultClientUserType>>
+    private lateinit var result: LiveData<List<DataUser>>
 
     init {
-        subscribeResult()
+        subscribeClient()
     }
 
     fun addUser(dataUser: DataUser) {
@@ -26,18 +23,24 @@ class MainViewModel(
         }
     }
 
-    fun addResult(dataResult: DataResult) {
+    fun deeleteUser(dataUser: DataUser) {
         viewModelScope.launch(Dispatchers.IO) {
-            db.result().addResult(dataResult)
+            db.user().delete(dataUser)
         }
     }
 
-    fun listenResult(): LiveData<List<DataResultClientUserType>> {
+    fun updateClient(dataUser: DataUser) {
+        viewModelScope.launch(Dispatchers.IO) {
+            db.user().update(dataUser)
+        }
+    }
+
+    fun listenResult(): LiveData<List<DataUser>> {
         return result
     }
 
 
-    private fun subscribeResult() {
-        result = db.result().getResult()
+    private fun subscribeClient() {
+        result = db.user().getUser()
     }
 }

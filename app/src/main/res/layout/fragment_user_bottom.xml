@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/semibold"
-            android:text="@string/title_tambah_client"
+            android:text="@string/title_tambah_user"
             android:textSize="16sp" />
 
 
@@ -38,17 +38,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            app:hintTextColor="@color/colorPrimary"
-            app:boxStrokeColor="@color/colorPrimary">
+            android:hint="@string/title_nama_user"
+            app:boxStrokeColor="@color/colorPrimary"
+            app:hintTextColor="@color/colorPrimary">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etClient"
+                android:id="@+id/etUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/title_nama_client"
-                android:imeOptions="actionDone"
-                android:maxLines="1"
-                android:textColorHint="@color/black" />
+                android:imeOptions="actionDone" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
