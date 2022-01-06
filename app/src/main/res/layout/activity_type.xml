@@ -64,6 +64,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_add"
+        app:tint="@null"
         android:contentDescription="@string/title_null" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
