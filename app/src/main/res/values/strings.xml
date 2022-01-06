@@ -37,4 +37,7 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_tambah_user">Tambah User</string>
+    <string name="title_nama_client">Nama Client</string>
+    <string name="error_filed">Silahkan isi field ini!</string>
 </resources>

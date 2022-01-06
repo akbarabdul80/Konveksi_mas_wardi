@@ -1,60 +1,73 @@
 package com.zero.myapplication.ui.client
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.andrefrsousa.superbottomsheet.SuperBottomSheetFragment
+import com.oratakashi.viewbinding.core.binding.fragment.viewBinding
+import com.oratakashi.viewbinding.core.tools.onClick
 import com.zero.myapplication.R
+import com.zero.myapplication.data.model.user.DataClient
+import com.zero.myapplication.databinding.FragmentClientBottomBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class ClientBottomFragment : SuperBottomSheetFragment() {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ClientBottomFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class ClientBottomFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private val binding: FragmentClientBottomBinding by viewBinding()
+    private lateinit var parent: BottomSheet
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        with(binding) {
+            btnSubmit.onClick {
+                when {
+                    etClient.text.toString().isEmpty() -> {
+                        etClient.error = resources.getString(R.string.error_filed)
+                    }
+
+                    else -> {
+                        parent.onSubmit(DataClient(etClient.text.toString()))
+                        dismiss()
+                    }
+                }
+            }
         }
     }
 
+    @SuppressLint("MissingSuperCall")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+        super.onCreateView(inflater, container, savedInstanceState)
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_client_bottom, container, false)
+        return binding.root
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        parent = context as BottomSheet
+    }
+
+
+    override fun getExpandedHeight(): Int {
+        return -2
+    }
+
+    override fun isSheetAlwaysExpanded(): Boolean {
+        return true
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ClientBottomFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ClientBottomFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        fun newInstance() =
+            ClientBottomFragment()
     }
+}
+
+interface BottomSheet {
+    fun onSubmit(data: DataClient)
 }
