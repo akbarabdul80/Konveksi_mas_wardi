@@ -15,6 +15,7 @@ import com.zero.myapplication.data.model.user.DataUser
 import com.zero.myapplication.databinding.ActivityMainBinding
 import com.zero.myapplication.ui.client.ClientActivity
 import com.zero.myapplication.ui.type.TypeActivity
+import com.zero.myapplication.ui.type.TypeBottomFragment
 import com.zero.myapplication.ui.user.UserActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -48,6 +49,10 @@ class MainActivity : AppCompatActivity() {
             llClient.onClick { startActivity(ClientActivity::class.java) }
             llUser.onClick { startActivity(UserActivity::class.java) }
             llType.onClick { startActivity(TypeActivity::class.java) }
+
+            fab.onClick {
+                MainBottomFragment.newInstance().show(supportFragmentManager, "Main Bottom")
+            }
         }
 
         viewModel.listenResult().observe(this, {
@@ -102,5 +107,6 @@ class MainActivity : AppCompatActivity() {
 
             binding.tvTotal.text = "$totalPengerjaan Baju"
         })
+
     }
 }

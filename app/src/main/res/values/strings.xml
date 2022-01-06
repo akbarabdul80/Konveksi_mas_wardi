@@ -44,4 +44,5 @@
     <string name="title_nama_user">Nama User</string>
     <string name="title_tambah_type">Tambah Tipe</string>
     <string name="title_nama_tipe">Nama Tipe</string>
+    <string name="title_jumlah">Jumlah</string>
 </resources>
