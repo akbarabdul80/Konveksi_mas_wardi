@@ -1,17 +1,19 @@
 package com.zero.myapplication.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.oratakashi.viewbinding.core.binding.activity.viewBinding
 import com.oratakashi.viewbinding.core.tools.gone
+import com.oratakashi.viewbinding.core.tools.onClick
+import com.oratakashi.viewbinding.core.tools.startActivity
 import com.oratakashi.viewbinding.core.tools.visible
 import com.zero.myapplication.R
 import com.zero.myapplication.data.db.RoomDB
 import com.zero.myapplication.data.model.user.DataResultAdapter
 import com.zero.myapplication.data.model.user.DataUser
 import com.zero.myapplication.databinding.ActivityMainBinding
+import com.zero.myapplication.ui.client.ClientActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -40,6 +42,8 @@ class MainActivity : AppCompatActivity() {
                 swDashboard.isRefreshing = false
                 viewModel.listenResult()
             }
+
+            llClient.onClick { startActivity(ClientActivity::class.java) }
         }
 
         viewModel.listenResult().observe(this, {
