@@ -42,4 +42,6 @@
     <string name="error_filed">Silahkan isi field ini!</string>
     <string name="title_tambah_client">Tambah Client</string>
     <string name="title_nama_user">Nama User</string>
+    <string name="title_tambah_type">Tambah Tipe</string>
+    <string name="title_nama_tipe">Nama Tipe</string>
 </resources>
