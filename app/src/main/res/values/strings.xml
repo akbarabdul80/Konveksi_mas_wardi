@@ -21,7 +21,7 @@
     <string name="title_admin" translatable="false">Admin</string>
     <string name="title_day" translatable="false">Selamat Malam,</string>
     <string name="title_null">null</string>
-    <string name="title_data_null">Tidak ada riwayat kas</string>
+    <string name="title_data_null">Tidak ada riwayat pekerjaan hari ini!</string>
     <string name="title_tipe">Tipe</string>
     <string name="title_user">User</string>
     <string name="title_client">Client</string>
@@ -50,4 +50,10 @@
     <string name="title_delete">Delete</string>
     <string name="edit_client">Edit Client</string>
     <string name="edit_user">Edit User</string>
+    <string name="title_rekap">Rekap</string>
+    <string name="lorem_ipsum">Lorem Ipsum</string>
+    <string name="title_sampai">Sampai</string>
+    <string name="title_total">Total</string>
+    <string name="zero">0</string>
+    <string name="title_lihat_history">Lihat History</string>
 </resources>

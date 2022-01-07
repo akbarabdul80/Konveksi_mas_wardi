@@ -37,9 +37,6 @@ class MainBottomFragment : SuperBottomSheetFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val sdf = SimpleDateFormat("dd/MM/yyyy hh:mm:ss")
-        val currentDate = sdf.format(Date())
-
-        toast(currentDate)
 
         initListener()
         with(binding) {

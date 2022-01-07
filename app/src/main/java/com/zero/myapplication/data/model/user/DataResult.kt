@@ -1,9 +1,33 @@
 package com.zero.myapplication.data.model.user
 
-import androidx.room.*
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.ForeignKey
+import androidx.room.ForeignKey.CASCADE
+import androidx.room.PrimaryKey
 
 @Entity(
-    tableName = "result"
+    tableName = "result",
+    foreignKeys = [
+        ForeignKey(
+            entity = DataClient::class,
+            parentColumns = arrayOf("id_client"),
+            childColumns = arrayOf("client_id"),
+            onDelete = CASCADE
+        ),
+        ForeignKey(
+            entity = DataUser::class,
+            parentColumns = arrayOf("id_user"),
+            childColumns = arrayOf("user_id"),
+            onDelete = CASCADE
+        ),
+        ForeignKey(
+            entity = DataType::class,
+            parentColumns = arrayOf("id_type"),
+            childColumns = arrayOf("type_id"),
+            onDelete = CASCADE
+        ),
+    ]
 )
 data class DataResult(
     @ColumnInfo(name = "client_id")

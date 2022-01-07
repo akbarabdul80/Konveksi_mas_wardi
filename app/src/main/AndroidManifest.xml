@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KonveksiMasWardi">
         <activity
+            android:name=".ui.rekap.RekapActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.type.TypeActivity"
             android:exported="true" />
         <activity
@@ -19,7 +22,7 @@
         <activity
             android:name=".ui.client.ClientActivity"
             android:exported="true"
-            android:label="@string/title_activity_client"/>
+            android:label="@string/title_activity_client" />
         <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
