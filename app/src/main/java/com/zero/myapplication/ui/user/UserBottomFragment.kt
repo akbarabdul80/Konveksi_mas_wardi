@@ -10,7 +10,6 @@ import com.andrefrsousa.superbottomsheet.SuperBottomSheetFragment
 import com.oratakashi.viewbinding.core.binding.fragment.viewBinding
 import com.oratakashi.viewbinding.core.tools.onClick
 import com.zero.myapplication.R
-import com.zero.myapplication.data.model.user.DataClient
 import com.zero.myapplication.data.model.user.DataUser
 import com.zero.myapplication.databinding.FragmentUserBottomBinding
 
@@ -18,20 +17,52 @@ class UserBottomFragment : SuperBottomSheetFragment() {
 
     private val binding: FragmentUserBottomBinding by viewBinding()
     private lateinit var parent: BottomSheet
+    private var dataUser: DataUser? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            dataUser = it.getParcelable("data")
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         with(binding) {
-            btnSubmit.onClick {
-                when {
-                    etUser.text.toString().isEmpty() -> {
-                        etUser.error = resources.getString(R.string.error_filed)
-                    }
 
-                    else -> {
-                        parent.onSubmit(DataUser(etUser.text.toString()))
-                        dismiss()
+            if (dataUser != null) {
+                etUser.setText(dataUser!!.nama_user)
+                tvTitle.text = resources.getString(R.string.edit_user)
+
+                btnSubmit.onClick {
+                    when {
+                        etUser.text.toString().isEmpty() -> {
+                            etUser.error = resources.getString(R.string.error_filed)
+                        }
+
+                        else -> {
+                            parent.onUpdate(
+                                DataUser(
+                                    etUser.text.toString(),
+                                    dataUser!!.id_user
+                                )
+                            )
+                            dismiss()
+                        }
+                    }
+                }
+            } else {
+                btnSubmit.onClick {
+                    when {
+                        etUser.text.toString().isEmpty() -> {
+                            etUser.error = resources.getString(R.string.error_filed)
+                        }
+
+                        else -> {
+                            parent.onSubmit(DataUser(etUser.text.toString()))
+                            dismiss()
+                        }
                     }
                 }
             }
@@ -66,9 +97,19 @@ class UserBottomFragment : SuperBottomSheetFragment() {
         @JvmStatic
         fun newInstance() =
             UserBottomFragment()
+
+        @JvmStatic
+        fun newInstance(data: DataUser) =
+            UserBottomFragment().apply {
+                arguments = Bundle().apply {
+                    putParcelable("data", data)
+                }
+            }
     }
 }
 
 interface BottomSheet {
     fun onSubmit(data: DataUser)
+    fun onUpdate(data: DataUser)
+    fun onDelete(data: DataUser)
 }

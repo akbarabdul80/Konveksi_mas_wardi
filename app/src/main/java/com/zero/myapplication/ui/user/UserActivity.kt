@@ -8,13 +8,16 @@ import com.oratakashi.viewbinding.core.binding.activity.viewBinding
 import com.oratakashi.viewbinding.core.tools.onClick
 import com.zero.myapplication.data.model.user.DataUser
 import com.zero.myapplication.databinding.ActivityUserBinding
+import com.zero.myapplication.ui.bottom_action.BottomActionFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class UserActivity : AppCompatActivity(), BottomSheet {
+class UserActivity : AppCompatActivity(), BottomSheet, BottomActionFragment.BottomAction {
 
     private val binding: ActivityUserBinding by viewBinding()
     private val viewModel: UserViewModel by viewModel()
-    private val adapter: UserAdapter = UserAdapter()
+    private val adapter: UserAdapter = UserAdapter {
+        BottomActionFragment.newInstance(it).show(supportFragmentManager, "Bottom Action")
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,5 +50,22 @@ class UserActivity : AppCompatActivity(), BottomSheet {
 
     override fun onSubmit(data: DataUser) {
         viewModel.addUser(data)
+    }
+
+    override fun onUpdate(data: DataUser) {
+        viewModel.updateClient(data)
+    }
+
+    override fun onDelete(data: DataUser) {
+
+    }
+
+    override fun <T> onUpdate(data: T) {
+        UserBottomFragment.newInstance(data as DataUser)
+            .show(supportFragmentManager, "Bottom Client")
+    }
+
+    override fun <T> onDelete(data: T) {
+
     }
 }

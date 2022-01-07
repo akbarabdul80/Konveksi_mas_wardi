@@ -5,10 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.oratakashi.viewbinding.core.binding.recyclerview.ViewHolder
 import com.oratakashi.viewbinding.core.binding.recyclerview.viewBinding
+import com.oratakashi.viewbinding.core.tools.onClick
 import com.zero.myapplication.data.model.user.DataUser
 import com.zero.myapplication.databinding.ListUserBinding
 
-class UserAdapter : RecyclerView.Adapter<ViewHolder<ListUserBinding>>() {
+class UserAdapter(
+    val onClick: (DataUser) -> Unit
+) : RecyclerView.Adapter<ViewHolder<ListUserBinding>>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -19,6 +22,7 @@ class UserAdapter : RecyclerView.Adapter<ViewHolder<ListUserBinding>>() {
         val dataUser = listClient[position]
         with(holder.binding) {
             tvTitle.text = dataUser.nama_user
+            root.onClick { onClick.invoke(dataUser) }
         }
     }
 
