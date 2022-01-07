@@ -1,5 +1,6 @@
 package com.zero.myapplication.ui.main
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,6 +8,8 @@ import com.zero.myapplication.data.db.RoomDB
 import com.zero.myapplication.data.model.user.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainViewModel(
     private val db: RoomDB
@@ -50,8 +53,12 @@ class MainViewModel(
     }
 
 
+    @SuppressLint("SimpleDateFormat")
     private fun subscribeResult() {
-        result = db.result().getResult()
+        val sdf = SimpleDateFormat("dd/MM/yyyy")
+        val currentDate = sdf.format(Date())
+
+        result = db.result().getResultToday(currentDate)
     }
 
     private fun subscribeResultUser() {

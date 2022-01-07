@@ -45,4 +45,8 @@
     <string name="title_tambah_type">Tambah Tipe</string>
     <string name="title_nama_tipe">Nama Tipe</string>
     <string name="title_jumlah">Jumlah</string>
+    <string name="title_action">Action</string>
+    <string name="title_edit">Edit</string>
+    <string name="title_delete">Delete</string>
+    <string name="edit_client">Edit Client</string>
 </resources>

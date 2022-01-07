@@ -8,13 +8,16 @@ import com.oratakashi.viewbinding.core.binding.activity.viewBinding
 import com.oratakashi.viewbinding.core.tools.onClick
 import com.zero.myapplication.data.model.user.DataClient
 import com.zero.myapplication.databinding.ActivityClientBinding
+import com.zero.myapplication.ui.bottom_action.BottomActionFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class ClientActivity : AppCompatActivity(), BottomSheet {
+class ClientActivity : AppCompatActivity(), BottomSheet, BottomActionFragment.BottomAction {
 
     private val binding: ActivityClientBinding by viewBinding()
     private val viewModel: ClientViewModel by viewModel()
-    private val adapter: ClientAdapter = ClientAdapter()
+    private val adapter: ClientAdapter = ClientAdapter {
+        BottomActionFragment.newInstance(it).show(supportFragmentManager, "Bottom Action")
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,5 +48,22 @@ class ClientActivity : AppCompatActivity(), BottomSheet {
 
     override fun onSubmit(data: DataClient) {
         viewModel.addClient(data)
+    }
+
+    override fun onUpdate(data: DataClient) {
+        viewModel.updateClient(data)
+    }
+
+    override fun onDelete(data: DataClient) {
+        TODO("Not yet implemented")
+    }
+
+    override fun <T> onUpdate(data: T) {
+        ClientBottomFragment.newInstance(data as DataClient)
+            .show(supportFragmentManager, "Bottom Client")
+    }
+
+    override fun <T> onDelete(data: T) {
+        TODO("Not yet implemented")
     }
 }

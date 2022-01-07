@@ -18,22 +18,56 @@ class ClientBottomFragment : SuperBottomSheetFragment() {
     private val binding: FragmentClientBottomBinding by viewBinding()
     private lateinit var parent: BottomSheet
 
+    private var dataClient: DataClient? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            dataClient = it.getParcelable("data")
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         with(binding) {
-            btnSubmit.onClick {
-                when {
-                    etClient.text.toString().isEmpty() -> {
-                        etClient.error = resources.getString(R.string.error_filed)
-                    }
 
-                    else -> {
-                        parent.onSubmit(DataClient(etClient.text.toString()))
-                        dismiss()
+            if (dataClient != null) {
+                etClient.setText(dataClient!!.nama_client)
+                tvTitle.text = resources.getString(R.string.edit_client)
+
+                btnSubmit.onClick {
+                    when {
+                        etClient.text.toString().isEmpty() -> {
+                            etClient.error = resources.getString(R.string.error_filed)
+                        }
+
+                        else -> {
+                            parent.onUpdate(
+                                DataClient(
+                                    etClient.text.toString(),
+                                    dataClient!!.id_client
+                                )
+                            )
+                            dismiss()
+                        }
+                    }
+                }
+            } else {
+                btnSubmit.onClick {
+                    when {
+                        etClient.text.toString().isEmpty() -> {
+                            etClient.error = resources.getString(R.string.error_filed)
+                        }
+
+                        else -> {
+                            parent.onSubmit(DataClient(etClient.text.toString()))
+                            dismiss()
+                        }
                     }
                 }
             }
+
         }
     }
 
@@ -65,9 +99,19 @@ class ClientBottomFragment : SuperBottomSheetFragment() {
         @JvmStatic
         fun newInstance() =
             ClientBottomFragment()
+
+        @JvmStatic
+        fun newInstance(data: DataClient) =
+            ClientBottomFragment().apply {
+                arguments = Bundle().apply {
+                    putParcelable("data", data)
+                }
+            }
     }
 }
 
 interface BottomSheet {
     fun onSubmit(data: DataClient)
+    fun onUpdate(data: DataClient)
+    fun onDelete(data: DataClient)
 }

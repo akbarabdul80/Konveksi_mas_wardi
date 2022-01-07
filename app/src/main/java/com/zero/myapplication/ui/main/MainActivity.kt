@@ -18,6 +18,9 @@ import com.zero.myapplication.ui.type.TypeActivity
 import com.zero.myapplication.ui.type.TypeBottomFragment
 import com.zero.myapplication.ui.user.UserActivity
 import org.koin.android.viewmodel.ext.android.viewModel
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
 

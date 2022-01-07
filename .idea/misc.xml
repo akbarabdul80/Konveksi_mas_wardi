@@ -11,9 +11,10 @@
         <entry key="app/src/main/res/drawable/rectangle_in.xml" value="0.11927083333333334" />
         <entry key="app/src/main/res/drawable/rectangle_out.xml" value="0.11927083333333334" />
         <entry key="app/src/main/res/layout/activity_client.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_type.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_user.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_bottom_actuion.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_client_bottom.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_main_bottom.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_type_bottom.xml" value="0.33" />

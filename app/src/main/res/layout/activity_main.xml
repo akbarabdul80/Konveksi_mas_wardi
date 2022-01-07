@@ -105,8 +105,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:fontFamily="@font/extrabold"
                     android:drawablePadding="10dp"
+                    android:fontFamily="@font/extrabold"
                     android:text="@string/title_rp"
                     android:textColor="@color/colorPrimary"
                     android:textSize="22sp"
@@ -141,8 +141,9 @@
                 android:orientation="horizontal"
                 android:weightSum="3">
 
+
                 <LinearLayout
-                    android:id="@+id/llType"
+                    android:id="@+id/llUser"
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
@@ -156,14 +157,14 @@
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:contentDescription="@string/title_null"
-                        android:src="@drawable/ic_type" />
+                        android:src="@drawable/ic_user" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:fontFamily="@font/regular"
-                        android:text="@string/title_tipe"
+                        android:text="@string/title_user"
                         android:textSize="13sp" />
 
                 </LinearLayout>
@@ -195,8 +196,9 @@
 
                 </LinearLayout>
 
+
                 <LinearLayout
-                    android:id="@+id/llUser"
+                    android:id="@+id/llType"
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
@@ -210,14 +212,14 @@
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:contentDescription="@string/title_null"
-                        android:src="@drawable/ic_user" />
+                        android:src="@drawable/ic_type" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:fontFamily="@font/regular"
-                        android:text="@string/title_user"
+                        android:text="@string/title_tipe"
                         android:textSize="13sp" />
 
                 </LinearLayout>
@@ -290,6 +292,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvHistory"
                     android:layout_width="350dp"
+                    android:paddingBottom="20dp"
                     android:layout_height="wrap_content"
                     android:scrollbars="none"
                     android:visibility="invisible" />
@@ -303,10 +306,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        app:tint="@null"
+        android:contentDescription="@string/title_null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_add"
-        android:contentDescription="@string/title_null" />
+        app:tint="@null" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,4 +14,8 @@ interface ResultDao {
     @Query("SELECT * FROM result ORDER BY user_id, client_id ASC")
     fun getResult(): LiveData<List<DataResultClientUserType>>
 
+    @Transaction
+    @Query("SELECT * FROM result WHERE date LIKE '%' ||:date || '%'  ORDER BY user_id, client_id ASC")
+    fun getResultToday(date: String): LiveData<List<DataResultClientUserType>>
+
 }
