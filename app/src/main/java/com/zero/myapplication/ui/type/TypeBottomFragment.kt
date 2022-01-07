@@ -18,10 +18,25 @@ class TypeBottomFragment : SuperBottomSheetFragment() {
     private val binding: FragmentTypeBottomBinding by viewBinding()
     private lateinit var parent: BottomSheet
 
+    private var dataType: DataType? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            dataType = it.getParcelable("data")
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         with(binding) {
+
+            if (dataType != null) {
+                etTipe.setText(dataType!!.nama_type)
+                tvTitle.text = resources.getString(R.string.edit_client)
+            }
+
             btnSubmit.onClick {
                 when {
                     etTipe.text.toString().isEmpty() -> {
@@ -29,7 +44,11 @@ class TypeBottomFragment : SuperBottomSheetFragment() {
                     }
 
                     else -> {
-                        parent.onSubmit(DataType(etTipe.text.toString()))
+                        if (dataType == null) {
+                            parent.onSubmit(DataType(etTipe.text.toString()))
+                        } else {
+                            parent.onUpdate(DataType(etTipe.text.toString(), dataType!!.id_type))
+                        }
                         dismiss()
                     }
                 }
@@ -65,9 +84,18 @@ class TypeBottomFragment : SuperBottomSheetFragment() {
         @JvmStatic
         fun newInstance() =
             TypeBottomFragment()
+
+        @JvmStatic
+        fun newInstance(data: DataType) =
+            TypeBottomFragment().apply {
+                arguments = Bundle().apply {
+                    putParcelable("data", data)
+                }
+            }
     }
 }
 
 interface BottomSheet {
     fun onSubmit(data: DataType)
+    fun onUpdate(data: DataType)
 }

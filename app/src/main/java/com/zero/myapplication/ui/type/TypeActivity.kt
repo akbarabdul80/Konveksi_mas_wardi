@@ -8,13 +8,16 @@ import com.oratakashi.viewbinding.core.binding.activity.viewBinding
 import com.oratakashi.viewbinding.core.tools.onClick
 import com.zero.myapplication.data.model.user.DataType
 import com.zero.myapplication.databinding.ActivityTypeBinding
+import com.zero.myapplication.ui.bottom_action.BottomActionFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class TypeActivity : AppCompatActivity(), BottomSheet {
+class TypeActivity : AppCompatActivity(), BottomSheet, BottomActionFragment.BottomAction {
 
     private val binding: ActivityTypeBinding by viewBinding()
     private val viewModel: TypeViewModel by viewModel()
-    private val adapter: TypeAdapter = TypeAdapter()
+    private val adapter: TypeAdapter = TypeAdapter {
+        BottomActionFragment.newInstance(it).show(supportFragmentManager, "Bottom Action")
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,5 +49,17 @@ class TypeActivity : AppCompatActivity(), BottomSheet {
 
     override fun onSubmit(data: DataType) {
         viewModel.addType(data)
+    }
+
+    override fun onUpdate(data: DataType) {
+        viewModel.updateType(data)
+    }
+
+    override fun <T> onUpdate(data: T) {
+        TypeBottomFragment.newInstance(data as DataType)
+            .show(supportFragmentManager, "Bottom Type")
+    }
+
+    override fun <T> onDelete(data: T) {
     }
 }

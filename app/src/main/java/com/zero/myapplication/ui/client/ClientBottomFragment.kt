@@ -35,35 +35,24 @@ class ClientBottomFragment : SuperBottomSheetFragment() {
             if (dataClient != null) {
                 etClient.setText(dataClient!!.nama_client)
                 tvTitle.text = resources.getString(R.string.edit_client)
+            }
 
-                btnSubmit.onClick {
-                    when {
-                        etClient.text.toString().isEmpty() -> {
-                            etClient.error = resources.getString(R.string.error_filed)
-                        }
-
-                        else -> {
-                            parent.onUpdate(
-                                DataClient(
-                                    etClient.text.toString(),
-                                    dataClient!!.id_client
-                                )
-                            )
-                            dismiss()
-                        }
+            btnSubmit.onClick {
+                when {
+                    etClient.text.toString().isEmpty() -> {
+                        etClient.error = resources.getString(R.string.error_filed)
                     }
-                }
-            } else {
-                btnSubmit.onClick {
-                    when {
-                        etClient.text.toString().isEmpty() -> {
-                            etClient.error = resources.getString(R.string.error_filed)
-                        }
 
-                        else -> {
+                    else -> {
+                        if (dataClient == null) {
                             parent.onSubmit(DataClient(etClient.text.toString()))
-                            dismiss()
+                        } else {
+                            parent.onUpdate(
+                                DataClient(etClient.text.toString(),
+                                dataClient!!.id_client!!)
+                            )
                         }
+                        dismiss()
                     }
                 }
             }

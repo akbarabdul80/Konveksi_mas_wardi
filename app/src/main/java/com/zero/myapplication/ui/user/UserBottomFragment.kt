@@ -34,14 +34,18 @@ class UserBottomFragment : SuperBottomSheetFragment() {
             if (dataUser != null) {
                 etUser.setText(dataUser!!.nama_user)
                 tvTitle.text = resources.getString(R.string.edit_user)
+            }
+            btnSubmit.onClick {
+                when {
+                    etUser.text.toString().isEmpty() -> {
+                        etUser.error = resources.getString(R.string.error_filed)
+                    }
 
-                btnSubmit.onClick {
-                    when {
-                        etUser.text.toString().isEmpty() -> {
-                            etUser.error = resources.getString(R.string.error_filed)
-                        }
-
-                        else -> {
+                    else -> {
+                        if (dataUser == null) {
+                            parent.onSubmit(DataUser(etUser.text.toString()))
+                            dismiss()
+                        } else {
                             parent.onUpdate(
                                 DataUser(
                                     etUser.text.toString(),
@@ -52,19 +56,7 @@ class UserBottomFragment : SuperBottomSheetFragment() {
                         }
                     }
                 }
-            } else {
-                btnSubmit.onClick {
-                    when {
-                        etUser.text.toString().isEmpty() -> {
-                            etUser.error = resources.getString(R.string.error_filed)
-                        }
 
-                        else -> {
-                            parent.onSubmit(DataUser(etUser.text.toString()))
-                            dismiss()
-                        }
-                    }
-                }
             }
         }
     }
