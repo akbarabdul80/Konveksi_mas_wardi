@@ -24,8 +24,10 @@
         <entry key="app/src/main/res/layout/list_client.xml" value="0.25" />
         <entry key="app/src/main/res/layout/list_history.xml" value="0.33" />
         <entry key="app/src/main/res/layout/list_item.xml" value="0.3536458333333333" />
+        <entry key="app/src/main/res/layout/list_rekap.xml" value="0.209375" />
         <entry key="app/src/main/res/layout/list_shimmer.xml" value="0.3536458333333333" />
         <entry key="app/src/main/res/layout/list_sub_history.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/list_sub_rekap.xml" value="0.209375" />
         <entry key="app/src/main/res/layout/list_type.xml" value="0.196875" />
         <entry key="app/src/main/res/layout/list_user.xml" value="0.196875" />
       </map>

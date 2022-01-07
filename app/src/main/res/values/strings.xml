@@ -21,7 +21,7 @@
     <string name="title_admin" translatable="false">Admin</string>
     <string name="title_day" translatable="false">Selamat Malam,</string>
     <string name="title_null">null</string>
-    <string name="title_data_null">Tidak ada riwayat pekerjaan hari ini!</string>
+    <string name="title_data_null">Tidak ada riwayat pekerjaan!</string>
     <string name="title_tipe">Tipe</string>
     <string name="title_user">User</string>
     <string name="title_client">Client</string>

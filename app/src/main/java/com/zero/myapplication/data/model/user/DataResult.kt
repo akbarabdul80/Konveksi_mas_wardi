@@ -39,7 +39,9 @@ data class DataResult(
     @ColumnInfo(name = "date")
     val date: String,
     @ColumnInfo(name = "qty")
-    var qty: Int
+    var qty: Int,
+    @ColumnInfo(name = "status")
+    var status: Boolean? = false
 ) {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id_result")

@@ -10,7 +10,7 @@ import com.zero.myapplication.databinding.ActivityRekapBinding
 
 class RekapActivity : AppCompatActivity() {
 
-    lateinit var adapter: TabAdaper
+    lateinit var adapter: TabAdapter
     private val binding: ActivityRekapBinding by viewBinding()
     var data = ArrayList<String>()
 
@@ -18,9 +18,9 @@ class RekapActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rekap)
 
-        adapter = TabAdaper(this, listOf("User", "Client"))
+        adapter = TabAdapter(this, listOf("User", "Client"))
 
-        with(binding){
+        with(binding) {
 
             data.add("User")
             data.add("Client")
@@ -34,5 +34,7 @@ class RekapActivity : AppCompatActivity() {
 
     }
 
-    fun back(view: View) {}
+    fun back(view: View) {
+        finish()
+    }
 }

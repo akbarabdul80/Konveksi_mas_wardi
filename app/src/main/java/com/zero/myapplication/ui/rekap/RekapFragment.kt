@@ -1,58 +1,176 @@
 package com.zero.myapplication.ui.rekap
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.zero.myapplication.R
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.oratakashi.viewbinding.core.binding.fragment.viewBinding
+import com.oratakashi.viewbinding.core.tools.gone
+import com.oratakashi.viewbinding.core.tools.visible
+import com.zero.myapplication.data.model.user.DataResultAdapter
+import com.zero.myapplication.data.model.user.DataResultClient
+import com.zero.myapplication.data.model.user.DataUser
+import com.zero.myapplication.databinding.FragmentRekapBinding
+import com.zero.myapplication.ui.main.MainAdapter
+import org.koin.android.viewmodel.ext.android.viewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [RekapFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class RekapFragment : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private val binding: FragmentRekapBinding by viewBinding()
+    private val viewModel: RekapViewModel by viewModel()
+    private val adapterUser: MainAdapter = MainAdapter()
+    private val adapterClinet: RekapAdapter = RekapAdapter()
+
+    private val data: MutableList<DataResultAdapter> = ArrayList()
+    private val dataClient: MutableList<DataResultClient> = ArrayList()
+
+    private var position: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            position = it.getInt("position")
         }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        with(binding) {
+            rvData.also {
+                if (position == 0) it.adapter = adapterUser else it.adapter = adapterClinet
+                it.layoutManager = LinearLayoutManager(requireContext())
+            }
+
+            if (position == 0) initListenerUser() else initListenerClient()
+
+        }
+    }
+
+    private fun initListenerClient() {
+        viewModel.listenResultClinet().observe(viewLifecycleOwner, {
+            binding.rvData.visible()
+
+            if (it.isEmpty()) {
+                binding.llNull.visible()
+            } else {
+                binding.llNull.gone()
+            }
+
+            dataClient.clear()
+
+            var clintNow = ""
+            it.forEach { clientUserType ->
+                if (clintNow == clientUserType.client_id) {
+                    dataClient.add(
+                        clientUserType.apply {
+                            itemType = 2
+                        }
+                    )
+                } else {
+                    dataClient.add(
+                        DataResultClient(
+                            clientUserType.nama_client,
+                            clientUserType.client_id,
+                            clientUserType.all_qty,
+                            clientUserType.nama_type,
+                            1
+                        )
+                    )
+
+                    dataClient.add(
+                        clientUserType.apply {
+                            itemType = 2
+                        }
+                    )
+                    clintNow = clientUserType.client_id
+                }
+
+                Log.e("Item", clintNow)
+
+            }
+
+            Log.e("TAG", "initListenerClient: $dataClient")
+
+            adapterClinet.submitData(dataClient)
+        })
+    }
+
+    private fun initListenerUser() {
+        viewModel.listenResult().observe(viewLifecycleOwner, {
+            binding.rvData.visible()
+
+            if (it.isEmpty()) {
+                binding.llNull.visible()
+            } else {
+                binding.llNull.gone()
+            }
+
+            data.clear()
+            var userNow = DataUser("")
+            it.sortedBy { it.user.id_user }
+            var totalPengerjaan = 0
+            it.forEach { clientUserType ->
+                totalPengerjaan += clientUserType.result.qty
+                if (userNow == clientUserType.user) {
+                    data.add(
+                        DataResultAdapter(
+                            clientUserType.result,
+                            clientUserType.client,
+                            clientUserType.user,
+                            clientUserType.type,
+                            2
+                        )
+                    )
+                } else {
+                    data.add(
+                        DataResultAdapter(
+                            clientUserType.result,
+                            clientUserType.client,
+                            clientUserType.user,
+                            clientUserType.type,
+                            1
+                        )
+                    )
+
+
+                    data.add(
+                        DataResultAdapter(
+                            clientUserType.result,
+                            clientUserType.client,
+                            clientUserType.user,
+                            clientUserType.type,
+                            2
+                        )
+                    )
+
+                    userNow = clientUserType.user
+                }
+
+            }
+
+            data.sortBy { it.user.id_user }
+
+            adapterUser.submitData(data)
+        })
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_rekap, container, false)
+        return binding.root
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment RekapFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(position: Int) =
             RekapFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putInt("position", position)
                 }
             }
     }
