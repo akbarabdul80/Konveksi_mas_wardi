@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KonveksiMasWardi">
         <activity
+            android:name=".ui.rekap.history.RekapHistoryActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.rekap.RekapActivity"
             android:exported="true" />
         <activity

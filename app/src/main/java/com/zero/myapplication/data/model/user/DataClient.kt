@@ -7,7 +7,9 @@ import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-@Entity(tableName = "client")
+@Entity(
+    tableName = "client"
+)
 data class DataClient(
     @ColumnInfo(name = "nama_client")
     val nama_client: String,

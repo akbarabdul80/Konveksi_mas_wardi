@@ -1,10 +1,7 @@
 package com.zero.myapplication.data.model.user
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
+import androidx.room.*
 import androidx.room.ForeignKey.CASCADE
-import androidx.room.PrimaryKey
 
 @Entity(
     tableName = "result",
@@ -27,6 +24,11 @@ import androidx.room.PrimaryKey
             childColumns = arrayOf("type_id"),
             onDelete = CASCADE
         ),
+    ],
+    indices = [
+        Index("client_id"),
+        Index("user_id"),
+        Index("type_id"),
     ]
 )
 data class DataResult(

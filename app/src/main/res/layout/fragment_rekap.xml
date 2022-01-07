@@ -5,13 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".ui.rekap.RekapFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvData"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="15dp"
-        android:text="@string/hello_blank_fragment" />
+        android:padding="15dp" />
 
     <LinearLayout
         android:id="@+id/llNull"
