@@ -19,8 +19,13 @@ interface ResultDao {
     @Query("SELECT * FROM result WHERE status = 0 ORDER BY user_id, client_id ASC")
     fun getResultRekapUser(): LiveData<List<DataResultClientUserType>>
 
+    @Transaction
     @Query("SELECT nama_client, client_id, SUM(qty) as all_qty, nama_type  FROM result JOIN client ON client_id = id_client JOIN type ON type_id = id_type GROUP BY client_id, type_id")
     fun getResultRekapClient(): LiveData<List<DataResultClient>>
+
+
+    @Query("SELECT * FROM result WHERE status = 0")
+    fun getAllNotRekap(): LiveData<List<DataResult>>
 
     @Query("SELECT SUM(qty) as all_qty FROM result WHERE status = 0")
     fun getAllQty(): LiveData<DataQtyResult>
@@ -29,4 +34,6 @@ interface ResultDao {
     @Query("SELECT * FROM result WHERE date LIKE '%' ||:date || '%'  ORDER BY user_id, client_id ASC")
     fun getResultToday(date: String): LiveData<List<DataResultClientUserType>>
 
+    @Query("UPDATE result SET status = 1 WHERE status = 0")
+    fun updateRekap()
 }
