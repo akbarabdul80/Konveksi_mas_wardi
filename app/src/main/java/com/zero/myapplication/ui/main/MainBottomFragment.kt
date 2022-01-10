@@ -8,14 +8,12 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import com.andrefrsousa.superbottomsheet.SuperBottomSheetFragment
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.oratakashi.viewbinding.core.binding.fragment.viewBinding
 import com.oratakashi.viewbinding.core.tools.onClick
 import com.oratakashi.viewbinding.core.tools.toast
 import com.zero.myapplication.R
-import com.zero.myapplication.data.model.user.DataClient
-import com.zero.myapplication.data.model.user.DataResult
-import com.zero.myapplication.data.model.user.DataType
-import com.zero.myapplication.data.model.user.DataUser
+import com.zero.myapplication.data.model.user.*
 import com.zero.myapplication.databinding.FragmentMainBottomBinding
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
@@ -74,17 +72,28 @@ class MainBottomFragment : SuperBottomSheetFragment() {
                     }
 
                     else -> {
-                        viewModel.addResult(
-                            DataResult(
-                                dataClientSelected.id_client!!,
-                                dataUserSelected.id_user!!,
-                                dataTypeSelected.id_type!!,
-                                sdf.format(Date()),
-                                etJumlah.text.toString().toInt()
-                            )
-                        )
-                        toast("Data Berhasil disimpan")
-                        dismiss()
+
+                        MaterialAlertDialogBuilder(requireContext())
+                            .setTitle("Menambah Hasil Pekerjaan?")
+                            .setMessage("Apakah input hasil pekerjaan sudah benar?")
+                            .setNegativeButton(resources.getString(R.string.title_cancel)) { dialog, _ ->
+                                dialog.dismiss()
+                            }
+                            .setPositiveButton(resources.getString(R.string.title_yes)) { _, _ ->
+                                viewModel.addResult(
+                                    DataResult(
+                                        dataClientSelected.id_client!!,
+                                        dataUserSelected.id_user!!,
+                                        dataTypeSelected.id_type!!,
+                                        sdf.format(Date()),
+                                        etJumlah.text.toString().toInt()
+                                    )
+                                )
+                                toast("Data Berhasil disimpan")
+                                dismiss()
+                            }
+                            .show()
+
                     }
                 }
             }

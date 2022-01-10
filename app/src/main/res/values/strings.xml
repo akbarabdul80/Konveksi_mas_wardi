@@ -55,4 +55,8 @@
     <string name="title_total">Total</string>
     <string name="zero">0</string>
     <string name="title_lihat_history">Lihat History</string>
+
+    <string name="title_cancel">Tidak</string>
+    <string name="title_yes">Ya</string>
+
 </resources>

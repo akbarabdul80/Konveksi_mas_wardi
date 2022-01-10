@@ -4,10 +4,12 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayoutMediator
 import com.oratakashi.viewbinding.core.binding.activity.viewBinding
 import com.oratakashi.viewbinding.core.tools.onClick
 import com.oratakashi.viewbinding.core.tools.toast
+import com.zero.myapplication.R
 import com.zero.myapplication.data.model.user.DataRekap
 import com.zero.myapplication.data.model.user.DataRekapResult
 import com.zero.myapplication.data.model.user.DataResult
@@ -52,23 +54,31 @@ class RekapActivity : AppCompatActivity() {
                 if (it.all_qty == 0) {
                     toast("Tidak ada data yang bisa direkap")
                 } else {
-
-                    val dataRekapResult: MutableList<DataRekapResult> = mutableListOf()
-                    val dataRekap = DataRekap(
-                        dataResult[0].date,
-                        dataResult[dataResult.size - 1].date,
-                        it.all_qty
-                    )
-                    dataResult.forEach { result ->
-                        dataRekapResult.add(
-                            DataRekapResult(
-                                1,
-                                result.id_result!!
+                    MaterialAlertDialogBuilder(this)
+                        .setTitle("Melakukan Rekap?")
+                        .setMessage("Anda akan merekap semua hasil pekerjaan yang ada disini")
+                        .setNegativeButton(resources.getString(R.string.title_cancel)) { dialog, _ ->
+                            dialog.dismiss()
+                        }
+                        .setPositiveButton(resources.getString(R.string.title_yes)) { _, _ ->
+                            val dataRekapResult: MutableList<DataRekapResult> = mutableListOf()
+                            val dataRekap = DataRekap(
+                                dataResult[0].date,
+                                dataResult[dataResult.size - 1].date,
+                                it.all_qty
                             )
-                        )
-                    }
+                            dataResult.forEach { result ->
+                                dataRekapResult.add(
+                                    DataRekapResult(
+                                        1,
+                                        result.id_result!!
+                                    )
+                                )
+                            }
 
-                    viewModel.addRekap(dataRekap, dataRekapResult)
+                            viewModel.addRekap(dataRekap, dataRekapResult)
+                        }
+                        .show()
                 }
             }
         })
