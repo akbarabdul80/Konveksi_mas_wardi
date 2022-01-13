@@ -10,12 +10,11 @@ import android.view.ViewGroup
 import com.andrefrsousa.superbottomsheet.SuperBottomSheetFragment
 import com.oratakashi.viewbinding.core.binding.bottomsheet.viewBinding
 import com.oratakashi.viewbinding.core.tools.onClick
-import com.zero.myapplication.databinding.FragmentBottomActuionBinding
-
+import com.zero.myapplication.databinding.FragmentBottomActionBinding
 
 class BottomActionFragment : SuperBottomSheetFragment() {
 
-    private val binding: FragmentBottomActuionBinding by viewBinding()
+    private val binding: FragmentBottomActionBinding by viewBinding()
     private lateinit var parent: BottomAction
     private var data: Any? = null
 

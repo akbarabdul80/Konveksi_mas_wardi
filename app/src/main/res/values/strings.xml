@@ -58,5 +58,8 @@
 
     <string name="title_cancel">Tidak</string>
     <string name="title_yes">Ya</string>
+    <string name="title_history_rekap">Riwayat Rekap</string>
+    <string name="title_date">Tanggal</string>
+    <string name="title_detail_rekap">Detail rekap</string>
 
 </resources>

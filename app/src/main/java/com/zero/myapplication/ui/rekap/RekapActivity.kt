@@ -8,12 +8,14 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayoutMediator
 import com.oratakashi.viewbinding.core.binding.activity.viewBinding
 import com.oratakashi.viewbinding.core.tools.onClick
+import com.oratakashi.viewbinding.core.tools.startActivity
 import com.oratakashi.viewbinding.core.tools.toast
 import com.zero.myapplication.R
 import com.zero.myapplication.data.model.user.DataRekap
 import com.zero.myapplication.data.model.user.DataRekapResult
 import com.zero.myapplication.data.model.user.DataResult
 import com.zero.myapplication.databinding.ActivityRekapBinding
+import com.zero.myapplication.ui.rekap.history.RekapHistoryActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class RekapActivity : AppCompatActivity() {
@@ -39,6 +41,10 @@ class RekapActivity : AppCompatActivity() {
             TabLayoutMediator(tbType, viewPager) { tab, position ->
                 tab.text = data[position]
             }.attach()
+
+            btnRekap.onClick {
+                startActivity(RekapHistoryActivity::class.java)
+            }
         }
 
         initListener()

@@ -19,10 +19,21 @@ interface ResultDao {
     @Query("SELECT * FROM result WHERE status = 0 ORDER BY user_id, client_id ASC")
     fun getResultRekapUser(): LiveData<List<DataResultClientUserType>>
 
+//    @Transaction
+//    @Query("SELECT * FROM result WHERE id_result = :id_result ORDER BY user_id, client_id ASC")
+//    fun getResultRekapUserByID(id_result: Int): LiveData<List<DataResultClientUserType>>
+
     @Transaction
-    @Query("SELECT nama_client, client_id, SUM(qty) as all_qty, nama_type  FROM result JOIN client ON client_id = id_client JOIN type ON type_id = id_type GROUP BY client_id, type_id")
+    @Query("SELECT * FROM result WHERE id_result = :id_result ORDER BY user_id, client_id ASC")
+    fun getResultRekapUserByID(id_result: Int): LiveData<List<DataResultClientUserType>>
+
+    @Transaction
+    @Query("SELECT nama_client, client_id, SUM(qty) as all_qty, nama_type  FROM result JOIN client ON client_id = id_client JOIN type ON type_id = id_type WHERE status = 0 GROUP BY client_id, type_id")
     fun getResultRekapClient(): LiveData<List<DataResultClient>>
 
+    @Transaction
+    @Query("SELECT nama_client, client_id, SUM(qty) as all_qty, nama_type  FROM result JOIN client ON client_id = id_client JOIN type ON type_id = id_type WHERE id_result = :id_result GROUP BY client_id, type_id")
+    fun getResultRekapClientByID(id_result: Int): LiveData<List<DataResultClient>>
 
     @Query("SELECT * FROM result WHERE status = 0")
     fun getAllNotRekap(): LiveData<List<DataResult>>

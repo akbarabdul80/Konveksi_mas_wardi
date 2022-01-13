@@ -15,12 +15,14 @@ class RekapViewModel(
     private lateinit var resultClient: LiveData<List<DataResultClient>>
     private lateinit var resultQty: LiveData<DataQtyResult>
     private lateinit var result: LiveData<List<DataResult>>
+    private lateinit var resultRekap: LiveData<List<DataRekap>>
 
     init {
         subscribeResultUser()
         subscribeResultClinet()
         subscribeResultQty()
         subscribeResult()
+        subscribeRekap()
     }
 
 
@@ -38,6 +40,18 @@ class RekapViewModel(
 
     fun listenResultNow(): LiveData<List<DataResult>> {
         return result
+    }
+
+    fun listenRekap(): LiveData<List<DataRekap>> {
+        return resultRekap
+    }
+
+    fun listenResultClinetByID(id_rekap: Int): LiveData<List<DataResultClient>> {
+        return db.result().getResultRekapClientByID(id_rekap)
+    }
+
+    fun listenResultByID(id_rekap: Int): LiveData<List<DataResultClientUserType>> {
+        return db.result().getResultRekapUserByID(id_rekap)
     }
 
     fun addRekap(dataRekap: DataRekap, dataRekapResult: List<DataRekapResult>) {
@@ -67,5 +81,9 @@ class RekapViewModel(
 
     private fun subscribeResult() {
         result = db.result().getAllNotRekap()
+    }
+
+    private fun subscribeRekap() {
+        resultRekap = db.rekap().getRekap()
     }
 }
