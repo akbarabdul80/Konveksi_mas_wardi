@@ -53,7 +53,7 @@ class RekapActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun initListener() {
-        viewModel.listenResultQty().observe(this, {
+        viewModel.listenResultQty().observe(this) {
             binding.tvTotal.text = "${it.all_qty} Baju"
 
             binding.fab.onClick {
@@ -87,12 +87,12 @@ class RekapActivity : AppCompatActivity() {
                         .show()
                 }
             }
-        })
+        }
 
-        viewModel.listenResultNow().observe(this, {
+        viewModel.listenResultNow().observe(this) {
             dataResult.clear()
             dataResult.addAll(it)
-        })
+        }
     }
 
     fun back(view: View) {

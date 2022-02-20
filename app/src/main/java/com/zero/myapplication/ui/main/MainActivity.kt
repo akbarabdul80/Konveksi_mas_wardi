@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.listenResult().observe(this, {
+        viewModel.listenResult().observe(this) {
             binding.rvHistory.visible()
             binding.shDashboard.gone()
 
@@ -115,7 +115,7 @@ class MainActivity : AppCompatActivity() {
             adapter.submitData(data)
 
             binding.tvTotal.text = "$totalPengerjaan Baju"
-        })
+        }
 
     }
 }
