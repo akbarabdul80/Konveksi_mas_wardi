@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.zero.myapplication">
+    package="com.zero.konveksiku">
 
     <application
-        android:name=".root.App"
+        android:name="com.zero.konveksiku.root.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,25 +11,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KonveksiMasWardi">
         <activity
-            android:name=".ui.rekap.history.detail.DetailRekapActivity"
+            android:name="com.zero.konveksiku.ui.rekap.history.detail.DetailRekapActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.rekap.history.RekapHistoryActivity"
+            android:name="com.zero.konveksiku.ui.rekap.history.RekapHistoryActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.rekap.RekapActivity"
+            android:name="com.zero.konveksiku.ui.rekap.RekapActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.type.TypeActivity"
+            android:name="com.zero.konveksiku.ui.type.TypeActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.user.UserActivity"
+            android:name="com.zero.konveksiku.ui.user.UserActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.client.ClientActivity"
+            android:name="com.zero.konveksiku.ui.client.ClientActivity"
             android:exported="true"
             android:label="@string/title_activity_client" />
-        <activity android:name=".ui.main.MainActivity">
+        <activity android:name="com.zero.konveksiku.ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

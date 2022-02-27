@@ -10,7 +10,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.zero.myapplication"
+        applicationId "com.zero.konveksiku"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
