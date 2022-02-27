@@ -4,7 +4,6 @@ import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import com.zero.konveksiku.data.db.dao.UserDao
 import com.zero.konveksiku.data.model.user.DataUser
-import kotlinx.coroutines.flow.Flow
 
 class UserRepository(private val db: UserDao) {
 

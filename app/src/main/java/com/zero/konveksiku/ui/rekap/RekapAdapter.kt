@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.zero.konveksiku.data.model.user.DataClient
 import com.zero.konveksiku.data.model.user.DataResultClient
 import com.zero.konveksiku.databinding.ListRekapBinding
 import com.zero.konveksiku.databinding.ListSubRekapBinding

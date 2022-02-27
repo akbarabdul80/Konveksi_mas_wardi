@@ -3,11 +3,17 @@ package com.zero.konveksiku.data.db;
 import androidx.room.DatabaseConfiguration;
 import androidx.room.InvalidationTracker;
 import androidx.room.RoomOpenHelper;
+import androidx.room.RoomOpenHelper.Delegate;
+import androidx.room.RoomOpenHelper.ValidationResult;
 import androidx.room.util.DBUtil;
 import androidx.room.util.TableInfo;
+import androidx.room.util.TableInfo.Column;
+import androidx.room.util.TableInfo.ForeignKey;
+import androidx.room.util.TableInfo.Index;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 import androidx.sqlite.db.SupportSQLiteOpenHelper;
-
+import androidx.sqlite.db.SupportSQLiteOpenHelper.Callback;
+import androidx.sqlite.db.SupportSQLiteOpenHelper.Configuration;
 import com.zero.konveksiku.data.db.dao.ClientDao;
 import com.zero.konveksiku.data.db.dao.ClientDao_Impl;
 import com.zero.konveksiku.data.db.dao.RekapDao;
@@ -113,7 +119,7 @@ public final class RoomDB_Impl extends RoomDB {
         final TableInfo _infoUser = new TableInfo("user", _columnsUser, _foreignKeysUser, _indicesUser);
         final TableInfo _existingUser = TableInfo.read(_db, "user");
         if (! _infoUser.equals(_existingUser)) {
-          return new RoomOpenHelper.ValidationResult(false, "user(com.zero.myapplication.data.model.user.DataUser).\n"
+          return new RoomOpenHelper.ValidationResult(false, "user(com.zero.konveksiku.data.model.user.DataUser).\n"
                   + " Expected:\n" + _infoUser + "\n"
                   + " Found:\n" + _existingUser);
         }
@@ -125,7 +131,7 @@ public final class RoomDB_Impl extends RoomDB {
         final TableInfo _infoClient = new TableInfo("client", _columnsClient, _foreignKeysClient, _indicesClient);
         final TableInfo _existingClient = TableInfo.read(_db, "client");
         if (! _infoClient.equals(_existingClient)) {
-          return new RoomOpenHelper.ValidationResult(false, "client(com.zero.myapplication.data.model.user.DataClient).\n"
+          return new RoomOpenHelper.ValidationResult(false, "client(com.zero.konveksiku.data.model.user.DataClient).\n"
                   + " Expected:\n" + _infoClient + "\n"
                   + " Found:\n" + _existingClient);
         }
@@ -137,7 +143,7 @@ public final class RoomDB_Impl extends RoomDB {
         final TableInfo _infoType = new TableInfo("type", _columnsType, _foreignKeysType, _indicesType);
         final TableInfo _existingType = TableInfo.read(_db, "type");
         if (! _infoType.equals(_existingType)) {
-          return new RoomOpenHelper.ValidationResult(false, "type(com.zero.myapplication.data.model.user.DataType).\n"
+          return new RoomOpenHelper.ValidationResult(false, "type(com.zero.konveksiku.data.model.user.DataType).\n"
                   + " Expected:\n" + _infoType + "\n"
                   + " Found:\n" + _existingType);
         }
@@ -160,7 +166,7 @@ public final class RoomDB_Impl extends RoomDB {
         final TableInfo _infoResult = new TableInfo("result", _columnsResult, _foreignKeysResult, _indicesResult);
         final TableInfo _existingResult = TableInfo.read(_db, "result");
         if (! _infoResult.equals(_existingResult)) {
-          return new RoomOpenHelper.ValidationResult(false, "result(com.zero.myapplication.data.model.user.DataResult).\n"
+          return new RoomOpenHelper.ValidationResult(false, "result(com.zero.konveksiku.data.model.user.DataResult).\n"
                   + " Expected:\n" + _infoResult + "\n"
                   + " Found:\n" + _existingResult);
         }
@@ -174,7 +180,7 @@ public final class RoomDB_Impl extends RoomDB {
         final TableInfo _infoRekap = new TableInfo("rekap", _columnsRekap, _foreignKeysRekap, _indicesRekap);
         final TableInfo _existingRekap = TableInfo.read(_db, "rekap");
         if (! _infoRekap.equals(_existingRekap)) {
-          return new RoomOpenHelper.ValidationResult(false, "rekap(com.zero.myapplication.data.model.user.DataRekap).\n"
+          return new RoomOpenHelper.ValidationResult(false, "rekap(com.zero.konveksiku.data.model.user.DataRekap).\n"
                   + " Expected:\n" + _infoRekap + "\n"
                   + " Found:\n" + _existingRekap);
         }
@@ -191,7 +197,7 @@ public final class RoomDB_Impl extends RoomDB {
         final TableInfo _infoRekapResult = new TableInfo("rekap_result", _columnsRekapResult, _foreignKeysRekapResult, _indicesRekapResult);
         final TableInfo _existingRekapResult = TableInfo.read(_db, "rekap_result");
         if (! _infoRekapResult.equals(_existingRekapResult)) {
-          return new RoomOpenHelper.ValidationResult(false, "rekap_result(com.zero.myapplication.data.model.user.DataRekapResult).\n"
+          return new RoomOpenHelper.ValidationResult(false, "rekap_result(com.zero.konveksiku.data.model.user.DataRekapResult).\n"
                   + " Expected:\n" + _infoRekapResult + "\n"
                   + " Found:\n" + _existingRekapResult);
         }
