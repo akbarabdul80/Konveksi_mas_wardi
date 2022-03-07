@@ -23,13 +23,13 @@ class UserViewModel(
         }
     }
 
-    fun deeleteUser(dataUser: DataUser) {
+    fun deleteUser(dataUser: DataUser) {
         viewModelScope.launch(Dispatchers.IO) {
             db.user().delete(dataUser)
         }
     }
 
-    fun updateClient(dataUser: DataUser) {
+    fun updateUser(dataUser: DataUser) {
         viewModelScope.launch(Dispatchers.IO) {
             db.user().update(dataUser)
         }

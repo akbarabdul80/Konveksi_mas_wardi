@@ -1,5 +1,6 @@
 package com.zero.konveksiku.ui.main
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
 
     private val data: MutableList<DataResultAdapter> = ArrayList()
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

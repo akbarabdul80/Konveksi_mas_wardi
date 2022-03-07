@@ -103,5 +103,4 @@ class UserBottomFragment : SuperBottomSheetFragment() {
 interface BottomSheet {
     fun onSubmit(data: DataUser)
     fun onUpdate(data: DataUser)
-    fun onDelete(data: DataUser)
 }

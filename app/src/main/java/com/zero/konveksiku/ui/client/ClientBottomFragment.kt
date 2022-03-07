@@ -102,5 +102,4 @@ class ClientBottomFragment : SuperBottomSheetFragment() {
 interface BottomSheet {
     fun onSubmit(data: DataClient)
     fun onUpdate(data: DataClient)
-    fun onDelete(data: DataClient)
 }

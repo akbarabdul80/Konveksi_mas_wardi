@@ -4,8 +4,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.oratakashi.viewbinding.core.binding.activity.viewBinding
 import com.oratakashi.viewbinding.core.tools.onClick
+import com.oratakashi.viewbinding.core.tools.toast
+import com.zero.konveksiku.R
 import com.zero.konveksiku.data.model.user.DataType
 import com.zero.konveksiku.databinding.ActivityTypeBinding
 import com.zero.konveksiku.ui.bottom_action.BottomActionFragment
@@ -38,9 +41,9 @@ class TypeActivity : AppCompatActivity(), BottomSheet, BottomActionFragment.Bott
     }
 
     private fun initLinstener() {
-        viewModel.listenResult().observe(this, {
+        viewModel.listenResult().observe(this) {
             adapter.submitData(it)
-        })
+        }
     }
 
     fun back(view: View) {
@@ -61,5 +64,16 @@ class TypeActivity : AppCompatActivity(), BottomSheet, BottomActionFragment.Bott
     }
 
     override fun <T> onDelete(data: T) {
+        MaterialAlertDialogBuilder(baseContext)
+            .setTitle("Menghapus Type?")
+            .setMessage("Jika anda menghapus type maka semua data termasuk rekap akan terhapus juga!")
+            .setNegativeButton(resources.getString(R.string.title_cancel)) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .setPositiveButton(resources.getString(R.string.title_yes)) { _, _ ->
+                viewModel.deleteType(data as DataType)
+                toast("Data Berhasil dihapus")
+            }
+            .show()
     }
 }

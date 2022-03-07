@@ -4,12 +4,17 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.oratakashi.viewbinding.core.binding.activity.viewBinding
 import com.oratakashi.viewbinding.core.tools.onClick
+import com.oratakashi.viewbinding.core.tools.toast
+import com.zero.konveksiku.R
+import com.zero.konveksiku.data.model.user.DataResult
 import com.zero.konveksiku.data.model.user.DataUser
 import com.zero.konveksiku.databinding.ActivityUserBinding
 import com.zero.konveksiku.ui.bottom_action.BottomActionFragment
 import org.koin.android.viewmodel.ext.android.viewModel
+import java.util.*
 
 class UserActivity : AppCompatActivity(), BottomSheet, BottomActionFragment.BottomAction {
 
@@ -39,9 +44,9 @@ class UserActivity : AppCompatActivity(), BottomSheet, BottomActionFragment.Bott
     }
 
     private fun initLinstener() {
-        viewModel.listenResult().observe(this, {
+        viewModel.listenResult().observe(this) {
             adapter.submitData(it)
-        })
+        }
     }
 
     fun back(view: View) {
@@ -53,11 +58,7 @@ class UserActivity : AppCompatActivity(), BottomSheet, BottomActionFragment.Bott
     }
 
     override fun onUpdate(data: DataUser) {
-        viewModel.updateClient(data)
-    }
-
-    override fun onDelete(data: DataUser) {
-
+        viewModel.updateUser(data)
     }
 
     override fun <T> onUpdate(data: T) {
@@ -66,6 +67,16 @@ class UserActivity : AppCompatActivity(), BottomSheet, BottomActionFragment.Bott
     }
 
     override fun <T> onDelete(data: T) {
-
+        MaterialAlertDialogBuilder(baseContext)
+            .setTitle("Menghapus User?")
+            .setMessage("Jika anda menghapus user maka semua data termasuk rekap akan terhapus juga!")
+            .setNegativeButton(resources.getString(R.string.title_cancel)) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .setPositiveButton(resources.getString(R.string.title_yes)) { _, _ ->
+                viewModel.deleteUser(data as DataUser)
+                toast("Data Berhasil dihapus")
+            }
+            .show()
     }
 }
