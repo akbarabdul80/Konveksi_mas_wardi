@@ -4,6 +4,9 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.MobileAds
 import com.oratakashi.viewbinding.core.binding.activity.viewBinding
 import com.oratakashi.viewbinding.core.tools.gone
 import com.oratakashi.viewbinding.core.tools.onClick
@@ -20,7 +23,6 @@ import com.zero.konveksiku.ui.type.TypeActivity
 import com.zero.konveksiku.ui.user.UserActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.*
-import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
@@ -119,5 +121,24 @@ class MainActivity : AppCompatActivity() {
             binding.tvTotal.text = "$totalPengerjaan Baju"
         }
 
+        initMobileAds()
+
+    }
+
+    private fun initMobileAds() {
+        MobileAds.initialize(this) {}
+        val adRequest = AdRequest.Builder().build()
+        binding.adView.loadAd(adRequest)
+        binding.adView.adListener = object : com.google.android.gms.ads.AdListener() {
+            override fun onAdLoaded() {
+                super.onAdLoaded()
+                binding.adView.visible()
+            }
+
+            override fun onAdFailedToLoad(p0: LoadAdError) {
+                super.onAdFailedToLoad(p0)
+                binding.adView.gone()
+            }
+        }
     }
 }

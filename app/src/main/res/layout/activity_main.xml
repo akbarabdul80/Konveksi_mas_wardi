@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.main.MainActivity">
 
 
@@ -273,6 +274,16 @@
                     android:text="@string/title_history"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
+
+
+                <com.google.android.gms.ads.AdView
+                    android:id="@+id/adView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    ads:adSize="BANNER"
+                    ads:adUnitId="ca-app-pub-2187811703921023/3371136978" />
+
 
                 <LinearLayout
                     android:id="@+id/llNull"
