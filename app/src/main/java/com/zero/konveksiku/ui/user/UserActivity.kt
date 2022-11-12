@@ -67,7 +67,7 @@ class UserActivity : AppCompatActivity(), BottomSheet, BottomActionFragment.Bott
     }
 
     override fun <T> onDelete(data: T) {
-        MaterialAlertDialogBuilder(baseContext)
+        MaterialAlertDialogBuilder(this)
             .setTitle("Menghapus User?")
             .setMessage("Jika anda menghapus user maka semua data termasuk rekap akan terhapus juga!")
             .setNegativeButton(resources.getString(R.string.title_cancel)) { dialog, _ ->

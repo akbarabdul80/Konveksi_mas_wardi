@@ -64,7 +64,7 @@ class ClientActivity : AppCompatActivity(), BottomSheet, BottomActionFragment.Bo
     }
 
     override fun <T> onDelete(data: T) {
-        MaterialAlertDialogBuilder(baseContext)
+        MaterialAlertDialogBuilder(this)
             .setTitle("Menghapus Client?")
             .setMessage("Jika anda menghapus client maka semua data termasuk rekap akan terhapus juga!")
             .setNegativeButton(resources.getString(R.string.title_cancel)) { dialog, _ ->

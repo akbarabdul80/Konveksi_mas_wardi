@@ -598,7 +598,8 @@ public final class ResultDao_Impl implements ResultDao {
     });
   }
 
-  private void __fetchRelationshipclientAscomZeroKonveksikuDataModelUserDataClient(final LongSparseArray<DataClient> _map) {
+  private void __fetchRelationshipclientAscomZeroKonveksikuDataModelUserDataClient(
+      final LongSparseArray<DataClient> _map) {
     if (_map.isEmpty()) {
       return;
     }
@@ -676,7 +677,8 @@ public final class ResultDao_Impl implements ResultDao {
     }
   }
 
-  private void __fetchRelationshipuserAscomZeroKonveksikuDataModelUserDataUser(final LongSparseArray<DataUser> _map) {
+  private void __fetchRelationshipuserAscomZeroKonveksikuDataModelUserDataUser(
+      final LongSparseArray<DataUser> _map) {
     if (_map.isEmpty()) {
       return;
     }
@@ -754,7 +756,8 @@ public final class ResultDao_Impl implements ResultDao {
     }
   }
 
-  private void __fetchRelationshiptypeAscomZeroKonveksikuDataModelUserDataType(final LongSparseArray<DataType> _map) {
+  private void __fetchRelationshiptypeAscomZeroKonveksikuDataModelUserDataType(
+      final LongSparseArray<DataType> _map) {
     if (_map.isEmpty()) {
       return;
     }

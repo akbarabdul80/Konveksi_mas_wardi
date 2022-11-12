@@ -4,14 +4,8 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.MobileAds
 import com.oratakashi.viewbinding.core.binding.activity.viewBinding
-import com.oratakashi.viewbinding.core.tools.gone
-import com.oratakashi.viewbinding.core.tools.onClick
-import com.oratakashi.viewbinding.core.tools.startActivity
-import com.oratakashi.viewbinding.core.tools.visible
+import com.oratakashi.viewbinding.core.tools.*
 import com.zero.konveksiku.R
 import com.zero.konveksiku.data.db.RoomDB
 import com.zero.konveksiku.data.model.user.DataResultAdapter
@@ -21,6 +15,9 @@ import com.zero.konveksiku.ui.client.ClientActivity
 import com.zero.konveksiku.ui.rekap.RekapActivity
 import com.zero.konveksiku.ui.type.TypeActivity
 import com.zero.konveksiku.ui.user.UserActivity
+import com.zero.konveksiku.utils.AdsEnum
+import com.zero.konveksiku.utils.Secured
+import com.zero.konveksiku.utils.requestAds
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.*
 
@@ -40,7 +37,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        initMobileAds()
         with(binding) {
             rvHistory.also {
                 it.adapter = adapter
@@ -121,24 +118,12 @@ class MainActivity : AppCompatActivity() {
             binding.tvTotal.text = "$totalPengerjaan Baju"
         }
 
-        initMobileAds()
 
     }
 
     private fun initMobileAds() {
-        MobileAds.initialize(this) {}
-        val adRequest = AdRequest.Builder().build()
-        binding.adView.loadAd(adRequest)
-        binding.adView.adListener = object : com.google.android.gms.ads.AdListener() {
-            override fun onAdLoaded() {
-                super.onAdLoaded()
-                binding.adView.visible()
-            }
-
-            override fun onAdFailedToLoad(p0: LoadAdError) {
-                super.onAdFailedToLoad(p0)
-                binding.adView.gone()
-            }
-        }
+        binding.adID = Secured.getBannerPubID()
+        binding.adView.requestAds(AdsEnum.Banner, Secured.getBannerPubID())
+        toast(Secured.getBannerPubID())
     }
 }

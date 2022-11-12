@@ -309,7 +309,8 @@ public final class RekapDao_Impl implements RekapDao {
     });
   }
 
-  private void __fetchRelationshiprekapResultAscomZeroKonveksikuDataModelUserDataRekapResult(final LongSparseArray<ArrayList<DataRekapResult>> _map) {
+  private void __fetchRelationshiprekapResultAscomZeroKonveksikuDataModelUserDataRekapResult(
+      final LongSparseArray<ArrayList<DataRekapResult>> _map) {
     if (_map.isEmpty()) {
       return;
     }

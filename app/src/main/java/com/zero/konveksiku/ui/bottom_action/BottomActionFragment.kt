@@ -33,6 +33,10 @@ class BottomActionFragment : SuperBottomSheetFragment() {
                 parent.onUpdate(data)
                 dismiss()
             }
+            btnDelete.onClick {
+                parent.onDelete(data)
+                dismiss()
+            }
         }
     }
 
